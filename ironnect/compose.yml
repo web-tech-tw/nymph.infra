@@ -1,0 +1,12 @@
+version: "3"
+services:
+  proxy:
+    image: ghcr.io/ai-tech-tw/ironnect:main
+    container_name: ironnect
+    environment:
+      SCRIPT_NAME: "/recv/openai"
+    volumes:
+      - "./config.py:/workplace/config.local.py:ro"
+    ports:
+      - "127.0.0.1:13050:8000"
+    restart: always

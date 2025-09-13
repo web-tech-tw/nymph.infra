@@ -1,0 +1,20 @@
+version: "2.2"
+services:
+  nymph:
+    image: ghcr.io/web-tech-tw/nymph:main
+    container_name: nymph
+    environment:
+      APP_CONFIGURED: "1"
+    env_file:
+      - config.env
+    volumes:
+      - ./prompts.json:/workplace/prompts.json:ro
+      - ./relay.json:/workplace/relay.json:ro
+      - ./roles.json:/workplace/roles.json:ro
+      - ./data:/workplace/data:rw
+    ports:
+      - 127.0.0.1:13010:3000
+    restart: always
+  redis:
+    image: redis:latest
+    restart: always

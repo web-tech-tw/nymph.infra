@@ -1,0 +1,21 @@
+version: "2.2"
+services:
+  recv:
+    image: ghcr.io/web-tech-tw/chew.recv:main
+    container_name: chew-recv
+    environment:
+      APP_CONFIGURED: "1"
+    env_file:
+      - config.env
+    networks:
+      - sara
+    ports:
+      - 127.0.0.1:13040:3000
+    volumes:
+      - ../sara.recv/keypair_public.pem:/workplace/keypair_public.pem:ro
+    restart: always
+
+networks:
+  sara:
+    external:
+      name: sara

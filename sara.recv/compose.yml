@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+  recv:
+    image: ghcr.io/web-tech-tw/sara.recv:main
+    container_name: sara-recv
+    environment:
+      APP_CONFIGURED: "1"
+    env_file:
+      - config.env
+    networks:
+      - sara
+    ports:
+      - 127.0.0.1:13020:3000
+    volumes:
+       - ./keypair_public.pem:/workplace/keypair_public.pem:ro
+       - ./keypair_private.pem:/workplace/keypair_private.pem:ro
+    restart: always
+
+networks:
+  sara:
+    name: sara
+    driver: bridge

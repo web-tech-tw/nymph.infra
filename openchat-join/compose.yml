@@ -1,0 +1,22 @@
+version: "2.2"
+services:
+  recv:
+    image: ghcr.io/web-tech-tw/openchat-join:main
+    container_name: openchat-recv
+    environment:
+      APP_CONFIGURED: "1"
+    env_file:
+      - config.env
+    networks:
+      - sara
+    ports:
+      - 127.0.0.1:13030:3000
+    volumes:
+      - ../sara.recv/keypair_public.pem:/workplace/keypair_public.pem:ro
+      - ./secret.key:/workplace/secret.key:ro
+    restart: always
+
+networks:
+  sara:
+    external:
+      name: sara
