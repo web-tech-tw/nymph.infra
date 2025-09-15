@@ -12,7 +12,7 @@ services:
     ports:
       - 127.0.0.1:13060:3000
     volumes:
-      - ../sara.recv/keypair_public.pem:/workplace/keypair_public.pem:ro
+      - ../020-sara/keypair_public.pem:/workplace/keypair_public.pem:ro
     restart: always
 
 networks:
