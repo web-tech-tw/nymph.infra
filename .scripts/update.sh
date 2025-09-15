@@ -5,7 +5,7 @@ set -e
 
 # Load environment variables from webhook if available
 if [ -n "$1" ]; then
-  eval "$(echo "$1" | jq -r '.env | to_entries[] | "export \(.key)=\(.value)"')"
+  eval "$(echo "$1" | jq -r '.env | to_entries[] | "export \(.key)=\(.value | @sh)"')"
 fi
 
 # Pull the latest changes
