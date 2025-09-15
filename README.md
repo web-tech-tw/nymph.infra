@@ -11,7 +11,6 @@
 | 主機名稱 | studio-nymph                                    |
 | 作業系統 | Debian GNU/Linux 12 (bookworm)                  |
 | 核心版本 | 6.1.0-38-amd64                                  |
-| 開機時間 | up 10 hours, 37 minutes                         |
 | 時區     | Asia/Taipei (CST, +0800)                        |
 | CPU      | QEMU Virtual CPU version 2.5+ @ 2.9 GHz, 5 核心 |
 | 記憶體   | 5.8Gi                                           |
