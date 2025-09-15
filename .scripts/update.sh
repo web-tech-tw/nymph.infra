@@ -20,6 +20,9 @@ for dir in */; do
   # Navigate into the directory
   cd "$dir"
 
+  # Generate .env file from .env.tmpl using envsubst
+  envsubst <.env.tmpl >.env
+
   # Deploy using docker-compose if the file exists
   if [ -f "compose.yml" ]; then
     docker-compose up -d
