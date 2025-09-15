@@ -21,7 +21,7 @@ for dir in */; do
   cd "$dir"
 
   # Deploy using docker-compose if the file exists
-  if [ -f "docker-compose.yml" ]; then
+  if [ -f "compose.yml" ]; then
     docker-compose up -d
   fi
  
