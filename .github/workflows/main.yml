@@ -1,0 +1,15 @@
+name: Main workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Webhook 📲
+        uses: wei/curl@master
+        with:
+          args: ${{ vars.DEPLOY_WEBHOOK_URL }}?secret=${{ secrets.DEPLOY_WEBHOOK_SECRET }}
