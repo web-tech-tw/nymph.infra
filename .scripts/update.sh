@@ -3,6 +3,11 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
+# Load environment variables from webhook if available
+if [ -n "$1" ]; then
+  eval "$(echo "$1" | jq -r '.env | to_entries[] | "export \(.key)=\(.value)"')"
+fi
+
 # Pull the latest changes
 git pull origin main
 
@@ -20,8 +25,12 @@ for dir in */; do
   # Navigate into the directory
   cd "$dir"
 
-  # Generate .env file from .env.tmpl using envsubst
-  envsubst <.env.tmpl >.env
+  # Generate config.env file from template using envsubst
+  if [ -f "config.env.tmpl" ]; then
+    envsubst <config.env.tmpl >config.env
+  else
+    echo "No environment template found in $dir"
+  fi
 
   # Deploy using docker-compose if the file exists
   if [ -f "compose.yml" ]; then
