@@ -2,4 +2,5 @@ static/
 
 */*
 !.github/**/*
+!.scripts/**/*
 !*/compose.yml
