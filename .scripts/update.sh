@@ -25,12 +25,11 @@ for dir in */; do
   # Navigate into the directory
   cd "$dir"
 
-  # Run init.sh only once and create a marker file
-  if [ ! -f ".initialized" ]; then
-    if [ -f "init.sh" ]; then
-      bash init.sh
-    fi
-    date +%s >.initialized
+  # Run init.sh if needed and track its state
+  if [ -f "init.sh" ] && { [ ! -f ".initialized" ] || ! md5sum -c .initialized >/dev/null 2>&1; }; then
+    echo "Running init.sh in $dir"
+    bash init.sh
+    md5sum init.sh >.initialized
   fi
 
   # Generate config.env file from template using envsubst
