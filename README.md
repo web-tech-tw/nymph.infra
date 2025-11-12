@@ -1,4 +1,4 @@
-# Nymph IaC
+# Nymph Stack
 
 > 目前本專案僅管理一台單節點（single node）伺服器，所有服務皆運行於此主機。
 
