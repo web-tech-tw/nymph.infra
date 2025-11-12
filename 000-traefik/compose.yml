@@ -1,0 +1,18 @@
+version: "3.5"
+services:
+  traefik:
+    container_name: traefik
+    build:
+      context: traefik
+    networks:
+      - nymph-stack
+    ports:
+      - 127.0.0.1:13005:13005
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: always
+
+networks:
+  nymph-stack:
+    name: nymph-stack
+    driver: bridge

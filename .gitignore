@@ -25,5 +25,6 @@ Thumbs.db
 *.tar.gz
 
 .initialized
-.env
+config.*
+.env.*
 keypair_*

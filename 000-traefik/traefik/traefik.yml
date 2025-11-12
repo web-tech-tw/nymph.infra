@@ -1,0 +1,41 @@
+# traefik.yml - Nymph Stack Gateway Configuration
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  web:
+    address: ":13005"
+  traefik:
+    address: ":13006"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    network: "nymph-stack"
+    constraints: "Label(`traefik.group`,`nymph-stack`)"
+    watch: true
+
+log:
+  level: INFO
+
+metrics:
+  prometheus:
+    addEntryPointsLabels: true
+    addServicesLabels: true
+    buckets:
+      - 0.1
+      - 0.3
+      - 1.2
+      - 5.0
+
+ping:
+  entryPoint: "traefik"
+
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+serversTransport:
+  insecureSkipVerify: true
