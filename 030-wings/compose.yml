@@ -3,6 +3,8 @@ services:
   web:
     build:
       context: autogen_wings
+    environment:
+      NUXT_APP_BASE_URL: "/wings"
     networks:
       - nymph-stack
     labels:
