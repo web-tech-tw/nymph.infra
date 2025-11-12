@@ -1,0 +1,19 @@
+version: "2.2"
+services:
+  index:
+    image: ghcr.io/web-tech-tw/index:main
+    networks:
+      - nymph-stack
+    labels:
+      - "traefik.enable=true"
+      - "traefik.group=nymph-stack"
+      - "traefik.http.routers.index.rule=PathPrefix(`/`)"
+      - "traefik.http.services.index.loadbalancer.server.port=80"
+      - "traefik.http.services.index.loadbalancer.healthcheck.path=/"
+      - "traefik.http.services.index.loadbalancer.healthcheck.interval=30s"
+    restart: always
+
+networks:
+  nymph-stack:
+    external:
+      name: nymph-stack
