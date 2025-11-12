@@ -32,6 +32,12 @@ for dir in */; do
     md5sum init.sh >.initialized
   fi
 
+  # Run prepare.sh, it always runs
+  if [ -f "prepare.sh" ]; then
+    echo "Running prepare.sh in $dir"
+    bash prepare.sh
+  fi
+
   # Generate config.env file from template using envsubst
   if [ -f "config.env.tmpl" ]; then
     envsubst <config.env.tmpl >config.env
