@@ -25,6 +25,13 @@ for dir in */; do
   # Navigate into the directory
   cd "$dir"
 
+  # Generate config.env file from template using envsubst
+  if [ -f "config.env.tmpl" ]; then
+    envsubst <config.env.tmpl >config.env
+  else
+    echo "No environment template found in $dir"
+  fi
+
   # Run init.sh if needed and track its state
   if [ -f "init.sh" ] && { [ ! -f ".initialized" ] || ! md5sum -c .initialized >/dev/null 2>&1; }; then
     echo "Running init.sh in $dir"
@@ -36,13 +43,6 @@ for dir in */; do
   if [ -f "prepare.sh" ]; then
     echo "Running prepare.sh in $dir"
     bash prepare.sh
-  fi
-
-  # Generate config.env file from template using envsubst
-  if [ -f "config.env.tmpl" ]; then
-    envsubst <config.env.tmpl >config.env
-  else
-    echo "No environment template found in $dir"
   fi
 
   # Deploy using docker-compose if the file exists
