@@ -8,6 +8,7 @@ services:
       - nymph-stack
     ports:
       - 127.0.0.1:13005:13005
+      - 127.0.0.1:13006:13006
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: always
