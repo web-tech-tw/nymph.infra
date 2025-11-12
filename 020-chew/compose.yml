@@ -1,5 +1,18 @@
-version: "2.2"
+version: "3.5"
 services:
+  web:
+    image: caddy:2
+    networks:
+      - nymph-stack
+    labels:
+      - "traefik.enable=true"
+      - "traefik.group=nymph-stack"
+      - "traefik.http.routers.chew.rule=PathPrefix(`/chew`)"
+      - "traefik.http.services.chew.loadbalancer.server.port=80"
+      - "traefik.http.services.chew.loadbalancer.healthcheck.path=/"
+      - "traefik.http.services.chew.loadbalancer.healthcheck.interval=30s"
+    restart: always
+
   recv:
     image: ghcr.io/web-tech-tw/chew.recv:main
     container_name: chew-recv

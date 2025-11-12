@@ -1,6 +1,6 @@
-version: "2.2"
+version: "3.5"
 services:
-  index:
+  web:
     image: ghcr.io/web-tech-tw/index:main
     networks:
       - nymph-stack

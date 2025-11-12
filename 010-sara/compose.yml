@@ -1,5 +1,18 @@
 version: "3.5"
 services:
+  web:
+    image: caddy:2
+    networks:
+      - nymph-stack
+    labels:
+      - "traefik.enable=true"
+      - "traefik.group=nymph-stack"
+      - "traefik.http.routers.sara.rule=PathPrefix(`/sara`)"
+      - "traefik.http.services.sara.loadbalancer.server.port=80"
+      - "traefik.http.services.sara.loadbalancer.healthcheck.path=/"
+      - "traefik.http.services.sara.loadbalancer.healthcheck.interval=30s"
+    restart: always
+
   recv:
     image: ghcr.io/web-tech-tw/sara.recv:main
     container_name: sara-recv
