@@ -33,3 +33,6 @@ networks:
   sara:
     name: sara
     driver: bridge
+  nymph-stack:
+    external:
+      name: nymph-stack

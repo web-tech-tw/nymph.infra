@@ -33,3 +33,6 @@ networks:
   sara:
     external:
       name: sara
+  nymph-stack:
+    external:
+      name: nymph-stack
