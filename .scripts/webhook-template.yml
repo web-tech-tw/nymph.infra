@@ -1,0 +1,25 @@
+- id: stack-up
+  command-working-directory: "/srv"
+  execute-command: "/srv/.scripts/stack-up.sh"
+  pass-arguments-to-command:
+    - source: "entire-payload"
+  trigger-rule: 
+    match:
+      type: value
+      value: ${WEBHOOK_SECRET_STACK_UP}
+      parameter:
+        source: payload
+        name: secret
+
+- id: part-up
+  command-working-directory: "/srv"
+  execute-command: "/srv/.scripts/part-up.sh"
+  pass-arguments-to-command:
+    - source: "entire-payload"
+  trigger-rule: 
+    match:
+      type: value
+      value: ${WEBHOOK_SECRET_PART_UP}
+      parameter:
+        source: payload
+        name: secret
