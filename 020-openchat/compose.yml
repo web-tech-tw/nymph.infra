@@ -1,14 +1,16 @@
 version: "3.5"
 services:
   web:
-    image: caddy:2
+    image: ghcr.io/web-tech-tw/openchat:main
+    environment:
+      NUXT_APP_BASE_URL: "/openchat"
     networks:
       - nymph-stack
     labels:
       - "traefik.enable=true"
       - "traefik.group=nymph-stack"
       - "traefik.http.routers.openchat.rule=PathPrefix(`/openchat`)"
-      - "traefik.http.services.openchat.loadbalancer.server.port=80"
+      - "traefik.http.services.openchat.loadbalancer.server.port=3000"
       - "traefik.http.services.openchat.loadbalancer.healthcheck.path=/"
       - "traefik.http.services.openchat.loadbalancer.healthcheck.interval=30s"
     restart: always
