@@ -38,7 +38,7 @@ echo "Webhook configuration generated at $CONF_INSTALL_FILE"
 echo "Please link this file in your webhook installation."
 echo "e.g., ln -s /srv/.scripts/$CONF_INSTALL_FILE /etc/webhook/hooks.yaml"
 echo "Don't forget to restart the webhook service after linking."
-echo "e.g. systemctl restart webhook"
+echo "e.g., systemctl restart webhook"
 echo ""
 
 # Print completion message
