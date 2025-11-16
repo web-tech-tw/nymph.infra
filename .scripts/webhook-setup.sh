@@ -13,8 +13,8 @@ echo "Setting up webhook configuration..."
 echo ""
 
 # Define configuration files
-CONF_TEMPLATE_FILE="webhook-template.yml"
-CONF_INSTALL_FILE="autogen_webhook.yml"
+CONF_TEMPLATE_FILE="webhook-template.yaml"
+CONF_INSTALL_FILE="autogen_webhook.yaml"
 
 # Function to create a random secret
 CREATE_SECRET() {
@@ -36,7 +36,9 @@ env \
 # Informational message about the generated file
 echo "Webhook configuration generated at $CONF_INSTALL_FILE"
 echo "Please link this file in your webhook installation."
-echo "e.g., ln -s /srv/.scripts/$CONF_INSTALL_FILE /etc/webhook/hooks.yml"
+echo "e.g., ln -s /srv/.scripts/$CONF_INSTALL_FILE /etc/webhook/hooks.yaml"
+echo "Don't forget to restart the webhook service after linking."
+echo "e.g. systemctl restart webhook"
 echo ""
 
 # Print completion message
