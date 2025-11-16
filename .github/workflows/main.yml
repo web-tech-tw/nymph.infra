@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: Deploy via Webhook 📲
         env:
-          WEBHOOK_URL: ${{ vars.DEPLOY_WEBHOOK_URL }}
-          WEBHOOK_SECRET: ${{ secrets.DEPLOY_WEBHOOK_SECRET }}
+          WEBHOOK_URL: ${{ vars.NYMPH_WEBHOOK_URL_STACK_UP }}
+          WEBHOOK_SECRET: ${{ secrets.NYMPH_WEBHOOK_SECRET_STACK_UP }}
         run: |
           ENV_JSON='{"secret":"'$WEBHOOK_SECRET'","env":'$(echo '${{ toJSON(secrets) }}')'}'
           curl -X POST -H "Content-Type: application/json" -d "$ENV_JSON" "$WEBHOOK_URL"
