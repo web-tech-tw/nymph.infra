@@ -9,7 +9,7 @@ if [ -n "$1" ]; then
 fi
 
 # Iterate over each directory in the current directory
-for dir in */; do
+ls -d */ | sort -r | while IFS= read -r dir; do
   # Skip certain directories
   if [ "$dir" == ".scripts/" ]; then
     continue
