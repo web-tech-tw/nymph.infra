@@ -38,6 +38,7 @@ fi
 
 # Deploy using docker-compose if the file exists
 if [ -f "compose.yml" ]; then
+    docker-compose pull
 	docker-compose up -d --remove-orphans --build
 else
   echo "No compose.yml found in $dir, nothing to bring up."

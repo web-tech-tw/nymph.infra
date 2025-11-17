@@ -47,6 +47,7 @@ for dir in */; do
 
   # Deploy using docker-compose if the file exists
   if [ -f "compose.yml" ]; then
+    docker-compose pull
     docker-compose up -d --remove-orphans --build
   fi
  
