@@ -6,7 +6,20 @@
   trigger-rule: 
     match:
       type: value
-      value: ${WEBHOOK_SECRET_STACK_UP}
+      value: ${_WEBHOOK_SECRET_STACK_UP}
+      parameter:
+        source: payload
+        name: secret
+
+- id: stack-down
+  command-working-directory: "/srv"
+  execute-command: "/srv/.scripts/stack-down.sh"
+  pass-arguments-to-command:
+    - source: "entire-payload"
+  trigger-rule: 
+    match:
+      type: value
+      value: ${_WEBHOOK_SECRET_STACK_DOWN}
       parameter:
         source: payload
         name: secret
@@ -19,7 +32,20 @@
   trigger-rule: 
     match:
       type: value
-      value: ${WEBHOOK_SECRET_PART_UP}
+      value: ${_WEBHOOK_SECRET_PART_UP}
+      parameter:
+        source: payload
+        name: secret
+
+- id: part-down
+  command-working-directory: "/srv"
+  execute-command: "/srv/.scripts/part-down.sh"
+  pass-arguments-to-command:
+    - source: "entire-payload"
+  trigger-rule: 
+    match:
+      type: value
+      value: ${_WEBHOOK_SECRET_PART_DOWN}
       parameter:
         source: payload
         name: secret

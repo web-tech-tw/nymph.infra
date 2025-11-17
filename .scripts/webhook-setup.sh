@@ -29,8 +29,10 @@ fi
 
 # Generate webhook configuration with a new secret
 env \
-	WEBHOOK_SECRET_STACK_UP="$(CREATE_SECRET)" \
-	WEBHOOK_SECRET_PART_UP="$(CREATE_SECRET)" \
+	_WEBHOOK_SECRET_STACK_UP="$(CREATE_SECRET)" \
+	_WEBHOOK_SECRET_STACK_DOWN="$(CREATE_SECRET)" \
+	_WEBHOOK_SECRET_PART_UP="$(CREATE_SECRET)" \
+	_WEBHOOK_SECRET_PART_DOWN="$(CREATE_SECRET)" \
 	envsubst <"$CONF_TEMPLATE_FILE" >"$CONF_INSTALL_FILE"
 
 # Informational message about the generated file
