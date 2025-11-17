@@ -12,7 +12,7 @@ services:
       - "traefik.group=nymph-stack"
       - "traefik.http.routers.wings.rule=PathPrefix(`/wings`)"
       - "traefik.http.services.wings.loadbalancer.server.port=3000"
-      - "traefik.http.services.wings.loadbalancer.healthcheck.path=/wings"
+      - "traefik.http.services.wings.loadbalancer.healthcheck.path=/wings/api/healthz"
       - "traefik.http.services.wings.loadbalancer.healthcheck.interval=30s"
     restart: always
 
